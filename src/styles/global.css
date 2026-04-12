@@ -36,6 +36,10 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); line-he
 a { color:var(--accent); text-decoration:none; }
 a:hover { text-decoration:underline; }
 
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 .glass {
   background:rgba(20,20,34,0.75);
   backdrop-filter:blur(16px);
