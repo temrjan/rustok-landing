@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="417" viewBox="0 0 256 417" fill="none" role="img" aria-label="Rustok">
+  <title>Rustok</title>
+  <!-- Rustok mark — faceted Ethereum-style octahedron, brand palette (variant C). Transparent girdle gap. -->
+  <!-- crown — outer slopes -->
+  <polygon points="128,0 0,212.32 128,287.96" fill="#B27DFF"/>
+  <polygon points="128,0 256,212.32 128,287.96" fill="#16E0C3"/>
+  <!-- crown — front faces -->
+  <polygon points="0,212.32 128,287.96 128,154.16" fill="#7A45CC"/>
+  <polygon points="256,212.32 128,287.96 128,154.16" fill="#9D5CFF"/>
+  <!-- pavilion -->
+  <polygon points="128,416.9 128,312.19 0,236.59" fill="#9D5CFF"/>
+  <polygon points="128,416.9 128,312.19 256,236.59" fill="#7A45CC"/>
+</svg>
