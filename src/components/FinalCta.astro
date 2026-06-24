@@ -1,0 +1,57 @@
+---
+import BrandMark from './BrandMark.astro'
+
+interface Props {
+  showDonations?: boolean
+}
+const { showDonations = true } = Astro.props
+
+const LINKS = {
+  clawhub: 'https://clawhub.ai/temrjan/rustok-wallet',
+  github: 'https://github.com/rustok-org',
+  x: 'https://x.com/rustokwallet',
+}
+const DONATION = '0xA713e7145F0060A35E92a928e997B42481c0FfEE'
+---
+
+<section class="cta" data-reveal>
+  <div class="mark"><BrandMark size={46} /></div>
+  <h2 class="head">Give your agent a wallet.</h2>
+  <div class="btns">
+    <a class="btn-primary" href={LINKS.clawhub} target="_blank" rel="noopener">Get Rustok&nbsp;→</a>
+    <a class="btn-ghost" href={LINKS.github} target="_blank" rel="noopener">GitHub</a>
+    <a class="btn-ghost" href={LINKS.x} target="_blank" rel="noopener">Follow on X</a>
+  </div>
+  {showDonations && (
+    <div class="support">support&nbsp; <span class="addr">{DONATION}</span></div>
+  )}
+</section>
+
+<style>
+  .cta {
+    padding: clamp(48px, 6vw, 90px) clamp(20px, 4vw, 56px);
+    border-top: 1px solid var(--hairline);
+    text-align: center;
+  }
+  .mark { display: flex; justify-content: center; margin-bottom: 22px; }
+  .head {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 52px); letter-spacing: -0.025em;
+    margin: 0 0 26px; color: var(--text);
+  }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .btn-primary {
+    color: var(--bg); background: var(--amethyst); font-weight: 600; font-size: 14px;
+    padding: 13px 24px; border-radius: 8px; box-shadow: 0 12px 34px -12px rgba(157, 92, 255, 0.9);
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--amethyst-hi); }
+  .btn-ghost {
+    color: var(--text); background: transparent; border: 1px solid var(--border);
+    font-weight: 500; font-size: 14px; padding: 13px 24px; border-radius: 8px;
+    transition: border-color 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--amethyst); }
+  .support { margin-top: 28px; font-size: 12px; color: var(--muted-4); }
+  .addr { color: var(--muted-2); word-break: break-all; }
+</style>

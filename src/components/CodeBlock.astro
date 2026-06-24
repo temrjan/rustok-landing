@@ -1,0 +1,55 @@
+---
+/**
+ * Code block with an accessible copy button.
+ * The highlighted code goes in the default slot (a sequence of spans / text).
+ * Behaviour is wired by src/scripts/landing.ts via [data-codeblock] / [data-code].
+ */
+interface Props {
+  tone?: 'deep' | 'panel'
+  label?: string
+  muted?: boolean
+}
+const { tone = 'panel', label = 'command', muted = false } = Astro.props
+---
+
+<div class="block" data-codeblock data-tone={tone}>
+  <button type="button" class="copy" data-copy aria-label={`Copy ${label}`}>copy</button>
+  <pre class="code" class:list={{ muted }} data-code><slot /></pre>
+</div>
+
+<style>
+  .block {
+    position: relative;
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow-x: auto;
+  }
+  .block[data-tone='deep']  { background: var(--panel-code); border: 1px solid #201338; }
+  .block[data-tone='panel'] { background: var(--bg-2);      border: 1px solid var(--border-soft); border-radius: 10px; padding: 16px 18px; }
+
+  .copy {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    z-index: 1;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: #150D26;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 9px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .copy:hover { color: var(--text); }
+  .copy[data-copied] { color: var(--teal); border-color: rgba(22, 224, 195, 0.4); }
+
+  .code {
+    margin: 0;
+    font: 500 13px/1.7 var(--mono);
+    color: var(--text);
+    white-space: pre;
+  }
+  .code.muted { color: var(--muted); }
+</style>

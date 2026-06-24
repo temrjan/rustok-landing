@@ -1,0 +1,73 @@
+---
+import BrandMark from './BrandMark.astro'
+
+const LINKS = {
+  x: 'https://x.com/rustokwallet',
+  github: 'https://github.com/rustok-org',
+  clawhub: 'https://clawhub.ai/temrjan/rustok-wallet',
+}
+---
+
+<div class="bar">
+  <a class="left" href="/" aria-label="Rustok home">
+    <span class="lights" aria-hidden="true">
+      <span class="dot" style="background:var(--amethyst)"></span>
+      <span class="dot" style="background:var(--teal)"></span>
+      <span class="dot" style="background:var(--dim-2)"></span>
+    </span>
+    <span class="crumb">
+      <BrandMark size={16} />
+      <span><span class="rustok">rustok</span>&nbsp;~&nbsp;wallet</span>
+    </span>
+  </a>
+
+  <nav class="right">
+    <a href={LINKS.x} target="_blank" rel="noopener" aria-label="Rustok on X" class="icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    </a>
+    <a href={LINKS.github} target="_blank" rel="noopener" class="link">GitHub</a>
+    <a href={LINKS.clawhub} target="_blank" rel="noopener" class="cta">Get Rustok&nbsp;→</a>
+  </nav>
+</div>
+
+<style>
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 13px clamp(16px, 2.5vw, 22px);
+    background: rgba(20, 13, 36, 0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .left { display: flex; align-items: center; gap: 14px; }
+  .lights { display: flex; gap: 8px; align-items: center; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .crumb { display: flex; align-items: center; gap: 9px; padding-left: 6px; }
+  .crumb > span { font-size: 13px; color: var(--muted-2); }
+  .rustok { color: var(--text); font-weight: 600; }
+
+  .right { display: flex; align-items: center; gap: clamp(10px, 2vw, 20px); font-size: 13px; }
+  .icon { color: var(--text-2); display: flex; align-items: center; transition: color 0.15s; }
+  .icon:hover { color: var(--text); }
+  .link { color: var(--text-2); transition: color 0.15s; }
+  .link:hover { color: var(--text); }
+  .cta {
+    color: var(--bg);
+    background: var(--amethyst);
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 7px;
+    box-shadow: 0 6px 22px -8px rgba(157, 92, 255, 0.9);
+    transition: background 0.15s;
+  }
+  .cta:hover { background: var(--amethyst-hi); }
+</style>

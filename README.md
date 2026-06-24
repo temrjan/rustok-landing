@@ -1,43 +1,48 @@
-# Astro Starter Kit: Minimal
+# rustok-landing
 
-```sh
-npm create astro@latest -- --template minimal
+Landing page for **Rustok** — a self-custody Ethereum agent wallet (MCP over stdio, one local
+Docker image, keys never leave your machine).
+
+The page is built as a **terminal session**: the content is the transcript of an agent using the
+wallet, revealed as you scroll. Built with Astro + Tailwind, statically generated, zero external
+runtime requests (fonts are self-hosted).
+
+## Stack
+
+- **Astro 6** (static output) + **Tailwind 4** (`@tailwindcss/vite`)
+- Design tokens + base styles in `src/styles/global.css`
+- Self-hosted variable fonts (JetBrains Mono + Space Grotesk) in `public/fonts/`
+- Vanilla TS interactions in `src/scripts/landing.ts` (scroll-reveal + copy buttons),
+  respecting `prefers-reduced-motion`
+
+> Requires **Node ≥ 22.12** (Astro 6).
+
+## Structure
+
+```
+src/
+  layouts/Base.astro        <head> meta/OG + the terminal-window shell
+  components/               one component per section (Hero, Install, Tools, Safety, …)
+  pages/index.astro         the landing
+  pages/privacy.astro       privacy policy
+  styles/global.css         design tokens + base + transcript/code helpers
+  scripts/landing.ts        reveal + copy interactions
+public/
+  fonts/                    self-hosted woff2
+  favicon.svg, og.svg       brand crystal
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
+| Command           | Action                                   |
+| :---------------- | :--------------------------------------- |
+| `npm install`     | Install dependencies                     |
+| `npm run dev`     | Dev server at `localhost:4321`           |
+| `npm run build`   | Build to `./dist/`                       |
+| `npm run preview` | Preview the production build locally     |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Content source of truth
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Copy, facts, and commands come from the landing spec. Facts are stated without overclaim — chains
+are named exactly, the "no hard-coded spending limits" caveat is shown, and the security review is
+described as a review, not a full external audit.

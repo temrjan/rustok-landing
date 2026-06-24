@@ -1,0 +1,39 @@
+---
+import SectionHead from './SectionHead.astro'
+import CodeBlock from './CodeBlock.astro'
+---
+
+<section class="section" data-reveal>
+  <SectionHead
+    cmd="two_ways_in"
+    title="One image, two ways in."
+    lede="A skill for OpenClaw agents, or an MCP server for any client."
+  />
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-head"><span class="dot" style="background:var(--teal)"></span>As an OpenClaw skill</div>
+      <CodeBlock tone="deep" label="skill install command"><span class="hl-cmd">openclaw</span> skills install <span class="hl-str">@temrjan/rustok-wallet</span></CodeBlock>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><span class="dot" style="background:var(--amethyst)"></span>As an MCP server</div>
+      <CodeBlock tone="deep" label="docker run command"><span class="hl-cmd">docker</span> run -i --rm --init -v rustok-wallet:/data \
+  -e RUSTOK_KEYRING_PASSWORD \
+  -e RUSTOK_ALLOWED_CHAINS=1,8453 \
+  -e RUSTOK_RPC_URLS_1 \
+  <span class="hl-str">ghcr.io/rustok-org/rustok-wallet:latest</span></CodeBlock>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 16px;
+  }
+  .card { background: var(--bg-2); border: 1px solid var(--border-soft); border-radius: 12px; padding: 20px; }
+  .card-head { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; font-size: 13px; color: var(--text); font-weight: 600; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; }
+</style>
