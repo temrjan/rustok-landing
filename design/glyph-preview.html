@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rustok glyph — octahedron variants</title>
+<style>
+  :root { --bg:#0B0712; --text:#EDE7FF; --muted:#7E6BB0; --border:#2A1C4D; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; color: var(--text);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    background: radial-gradient(120% 80% at 50% -10%, #110A22 0%, #08050F 60%);
+    padding: 40px clamp(16px,4vw,56px);
+  }
+  h1 { font-weight: 700; font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 32px; }
+  .card { border: 1px solid var(--border); border-radius: 14px; background: #0B0712; padding: 24px 26px; margin-bottom: 22px; }
+  .card h2 { font-size: 16px; margin: 0 0 4px; }
+  .legend { color: var(--muted); font-size: 12px; margin-bottom: 20px; line-height: 1.7; }
+  .swatch { display:inline-block; width:10px; height:10px; border-radius:2px; vertical-align:middle; margin:0 4px 0 10px; }
+  .sizes { display: flex; align-items: flex-end; gap: 28px; flex-wrap: wrap; margin-bottom: 22px; }
+  .size { text-align: center; }
+  .size small { display:block; color: var(--muted); font-size: 11px; margin-top: 8px; }
+  .contexts { display:flex; gap: 28px; flex-wrap: wrap; align-items: center; }
+  .titlebar { display:flex; align-items:center; gap:9px; background: rgba(20,13,36,.86); border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:13px; }
+  .titlebar .crumb { color: var(--muted); }
+  .titlebar .crumb b { color: var(--text); font-weight:600; }
+  .fav { width:44px; height:44px; border-radius:10px; background:#0B0712; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
+  .favlabel { color: var(--muted); font-size: 11px; }
+</style>
+</head>
+<body>
+  <h1>Rustok glyph — Ethereum-style octahedron</h1>
+  <div class="sub">6 facets + girdle gap, in the brand palette. The gap shows the dark background through, like on the site. &nbsp;✓ <b>Variant C</b> is the one shipped — see BrandMark.astro / favicon.svg / og.svg.</div>
+  <div id="root"></div>
+
+  <script>
+    // amethyst #9D5CFF · amethyst-hi #B27DFF · amethyst-soft #C9A2FF · dark #7A45CC · teal #16E0C3 · teal-dim #14C9B0
+    // facet order: [ UL-slope, UR-slope, front-L, front-R, lower-L, lower-R ]
+    const VARIANTS = [
+      { id:'A', name:'A — faithful recolor (teal on the upper-right slope, like the mint in your reference)',
+        c:['#C9A2FF','#16E0C3','#9D5CFF','#B27DFF','#C9A2FF','#9D5CFF'] },
+      { id:'B', name:'B — teal core (amethyst body, glowing teal front faces, symmetric)',
+        c:['#B27DFF','#9D5CFF','#16E0C3','#14C9B0','#9D5CFF','#7A45CC'] },
+      { id:'C', name:'C — amethyst-dominant, deeper 3D (teal accent top-right, darker shadows) — ✓ CHOSEN / shipped',
+        c:['#B27DFF','#16E0C3','#7A45CC','#9D5CFF','#9D5CFF','#7A45CC'] },
+    ]
+    const PTS = [
+      '128,0 0,212.32 128,287.96',     // UL slope
+      '128,0 256,212.32 128,287.96',   // UR slope
+      '0,212.32 128,287.96 128,154.16',   // front-L
+      '256,212.32 128,287.96 128,154.16', // front-R
+      '128,416.9 128,312.19 0,236.59',    // lower-L
+      '128,416.9 128,312.19 256,236.59',  // lower-R
+    ]
+    const LABELS = ['UL slope','UR slope','front-L','front-R','lower-L','lower-R']
+
+    function svg(colors, h) {
+      const w = Math.round(h*256/417)
+      const polys = PTS.map((p,i)=>`<polygon points="${p}" fill="${colors[i]}"/>`).join('')
+      return `<svg width="${w}" height="${h}" viewBox="0 0 256 417" fill="none">${polys}</svg>`
+    }
+
+    const root = document.getElementById('root')
+    root.innerHTML = VARIANTS.map(v => `
+      <div class="card">
+        <h2>${v.id}</h2>
+        <div class="legend">${v.name}<br>${
+          LABELS.map((l,i)=>`${l}<span class="swatch" style="background:${v.c[i]}"></span>${v.c[i]}`).join(' · ')
+        }</div>
+        <div class="sizes">
+          ${[200,120,64,32,20,16].map(s=>`<div class="size">${svg(v.c,s)}<small>${s}px</small></div>`).join('')}
+        </div>
+        <div class="contexts">
+          <div class="titlebar">${svg(v.c,16)}<span class="crumb"><b>rustok</b>&nbsp;~&nbsp;wallet</span></div>
+          <div class="fav">${svg(v.c,26)}</div>
+          <span class="favlabel">↑ title-bar &nbsp;·&nbsp; favicon</span>
+        </div>
+      </div>
+    `).join('')
+  </script>
+</body>
+</html>

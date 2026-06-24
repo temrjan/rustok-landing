@@ -1,8 +1,9 @@
 ---
 /**
- * Rustok brand mark — a faceted amethyst+teal crystal (TZ §4).
- * Solid fills only (no gradient ids) so it can be rendered many times
- * on one page without id collisions.
+ * Rustok brand mark — a faceted Ethereum-style octahedron (two pyramids + a
+ * gap at the girdle) in the Rustok palette: amethyst body with a teal accent
+ * facet. Solid fills only (no gradient ids) so it renders many times per page.
+ * Native aspect ratio 256:417; `size` is the height.
  */
 interface Props {
   size?: number
@@ -10,25 +11,25 @@ interface Props {
   title?: string
 }
 const { size = 22, class: className, title = 'Rustok' } = Astro.props
+const width = Math.round((size * 256) / 417)
 ---
 
 <svg
-  width={size}
+  width={width}
   height={size}
-  viewBox="0 0 24 24"
+  viewBox="0 0 256 417"
   fill="none"
   role="img"
   aria-label={title}
   class={className}
 >
-  <path d="M12 2.5 L2.8 12 L21.2 12 Z" fill="#16E0C3" />
-  <path d="M2.8 12 L21.2 12 L12 21.5 Z" fill="#9D5CFF" />
-  <path
-    d="M12 2.5 L2.8 12 L12 21.5 L21.2 12 Z"
-    stroke="#C9A2FF"
-    stroke-opacity="0.35"
-    stroke-width="0.6"
-    stroke-linejoin="round"
-  />
-  <path d="M12 2.5 L12 21.5" stroke="#C9A2FF" stroke-opacity="0.2" stroke-width="0.6" />
+  <!-- crown — outer slopes -->
+  <polygon points="128,0 0,212.32 128,287.96" fill="#B27DFF" />
+  <polygon points="128,0 256,212.32 128,287.96" fill="#16E0C3" />
+  <!-- crown — front faces (drawn over the slopes) -->
+  <polygon points="0,212.32 128,287.96 128,154.16" fill="#7A45CC" />
+  <polygon points="256,212.32 128,287.96 128,154.16" fill="#9D5CFF" />
+  <!-- pavilion -->
+  <polygon points="128,416.9 128,312.19 0,236.59" fill="#9D5CFF" />
+  <polygon points="128,416.9 128,312.19 256,236.59" fill="#7A45CC" />
 </svg>
