@@ -33,7 +33,17 @@ const DONATION = '0xA713e7145F0060A35E92a928e997B42481c0FfEE'
     border-top: 1px solid var(--hairline);
     text-align: center;
   }
-  .mark { display: flex; justify-content: center; margin-bottom: 22px; }
+  .mark {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 22px;
+    animation: float 5.5s ease-in-out infinite;
+    will-change: transform;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-9px); }
+  }
   .head {
     font-family: var(--display); font-weight: 700;
     font-size: clamp(28px, 4.4vw, 52px); letter-spacing: -0.025em;

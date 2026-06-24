@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Rustok">
+  <title>Rustok</title>
+  <rect width="512" height="512" rx="112" fill="#0B0712"/>
+  <g transform="translate(145.5 76) scale(0.863)">
+    <polygon points="128,0 0,212.32 128,287.96" fill="#B27DFF"/>
+    <polygon points="128,0 256,212.32 128,287.96" fill="#16E0C3"/>
+    <polygon points="0,212.32 128,287.96 128,154.16" fill="#7A45CC"/>
+    <polygon points="256,212.32 128,287.96 128,154.16" fill="#9D5CFF"/>
+    <polygon points="128,416.9 128,312.19 0,236.59" fill="#9D5CFF"/>
+    <polygon points="128,416.9 128,312.19 256,236.59" fill="#7A45CC"/>
+  </g>
+</svg>
