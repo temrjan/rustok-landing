@@ -1,0 +1,35 @@
+---
+const LINKS = {
+  x: 'https://x.com/rustokwallet',
+  clawhub: 'https://clawhub.ai/temrjan/rustok-wallet',
+  github: 'https://github.com/rustok-org',
+}
+---
+
+<footer class="footer">
+  <div class="links">
+    <a href={LINKS.x} target="_blank" rel="noopener">X</a>
+    <a href={LINKS.clawhub} target="_blank" rel="noopener">ClawHub</a>
+    <a href={LINKS.github} target="_blank" rel="noopener">GitHub</a>
+    <a href="/privacy">Privacy</a>
+    <span class="dot">·</span>
+    <span class="meta">v0.3.2</span>
+    <span class="meta">Core proprietary · skill MIT-0</span>
+  </div>
+  <div class="audit">Security review covering the keys/crypto/keyring boundary; not a full external audit.</div>
+</footer>
+
+<style>
+  .footer {
+    padding: 26px clamp(20px, 4vw, 56px);
+    border-top: 1px solid var(--border);
+    background: var(--bg-3);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; justify-content: space-between;
+  }
+  .links { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; font-size: 13px; }
+  .links a { color: var(--text-2); transition: color 0.15s; }
+  .links a:hover { color: var(--text); }
+  .dot { color: var(--dim-2); }
+  .meta { color: var(--muted-4); }
+  .audit { font-size: 11.5px; color: var(--muted-2); max-width: 420px; line-height: 1.5; }
+</style>

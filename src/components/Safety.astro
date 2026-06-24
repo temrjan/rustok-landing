@@ -1,0 +1,69 @@
+---
+import SectionHead from './SectionHead.astro'
+
+const pillars = [
+  { title: 'Self-custody', body: 'Keys live only in the local core and never leave it. Encrypted at rest with Argon2id + AES-256-GCM.' },
+  { title: 'Capability gating', body: 'read / preview / execute — fail-closed, nothing more than you grant.' },
+  { title: 'txguard', body: 'Every transaction is parsed and risk-flagged before you sign — scam-address and risky-approval checks.' },
+  { title: 'You approve', body: 'Always preview before execute. The agent proposes; you decide.' },
+]
+---
+
+<section class="section" data-reveal>
+  <SectionHead cmd="safety" title="The agent proposes. You decide." />
+
+  <div class="pillars">
+    {pillars.map((p) => (
+      <div class="pillar">
+        <div class="p-title">{p.title}</div>
+        <div class="p-body">{p.body}</div>
+      </div>
+    ))}
+  </div>
+
+  <div class="callout">
+    <span class="warn-icon">⚠</span>
+    <div><span class="warn-strong">Self-custody means your risk:</span> there are no hard-coded spending limits. txguard flags risky transactions, it does not block them.</div>
+  </div>
+
+  <div class="term">
+    <div class="term-bar">
+      <span class="d" style="background:var(--amber)"></span>
+      <span class="fname">txguard.log</span>
+    </div>
+    <div class="term-body" role="img" aria-label="An agent previews a send with an unlimited approval; txguard raises a warning to review before signing; Rustok flags it but does not block — you decide.">
+      <div><span class="t-ag">agent</span><span class="t-sep"> ▸ </span>preview_send(&#123; spender, approval: <span class="t-red">unlimited</span> &#125;)</div>
+      <div class="indent"><span class="t-key t-warn">txguard</span><span class="t-warn">⚠ warning</span><span class="t-soft">&nbsp;&nbsp;&nbsp;unlimited approval — review before you sign</span></div>
+      <div><span class="t-ru">rustok</span><span class="t-sep"> ▸ </span><span class="t-soft">flagged, not blocked — </span><span class="t-val">you decide</span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pillars {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 14px; margin-bottom: 18px;
+  }
+  .pillar { background: var(--bg-2); border: 1px solid var(--border-soft); border-radius: 12px; padding: 20px; }
+  .p-title { font-size: 13.5px; color: var(--teal); font-weight: 600; margin-bottom: 9px; }
+  .p-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  .callout {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: rgba(255, 180, 84, 0.06); border: 1px solid rgba(255, 180, 84, 0.32); border-radius: 12px;
+    padding: 16px 18px; margin-bottom: 22px;
+  }
+  .warn-icon { color: var(--amber); font-size: 15px; line-height: 1.4; }
+  .callout > div { font-size: 13px; line-height: 1.6; color: #E7D9C2; }
+  .warn-strong { color: var(--amber); font-weight: 600; }
+
+  .term { background: var(--bg-2); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; }
+  .term-bar { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--hairline-2); background: var(--bg-3); }
+  .d { width: 7px; height: 7px; border-radius: 50%; }
+  .fname { font-size: 11.5px; color: var(--muted-4); }
+  .term-body {
+    padding: 18px 20px; font-size: clamp(12px, 1.4vw, 13.5px); line-height: 1.8;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .indent { padding-left: 26px; }
+</style>

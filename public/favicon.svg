@@ -1,15 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 417" fill="none">
-  <!-- Ethereum diamond in Rustok amber/orange palette -->
-  <!-- Top left facet -->
-  <path d="M127.96 0L125.17 9.5V285.17L127.96 287.96L255.92 212.32Z" fill="#e07800"/>
-  <!-- Top right facet -->
-  <path d="M127.96 0L0 212.32L127.96 287.96V154.16Z" fill="#f59e0b"/>
-  <!-- Bottom left facet -->
-  <path d="M127.96 312.19L126.39 314.1V416.46L127.96 416.96L256 236.59Z" fill="#e07800"/>
-  <!-- Bottom right facet -->
-  <path d="M127.96 416.96V312.19L0 236.59Z" fill="#f59e0b"/>
-  <!-- Middle dark left -->
-  <path d="M127.96 287.96L255.92 212.32L127.96 154.16Z" fill="#b45309"/>
-  <!-- Middle dark right -->
-  <path d="M0 212.32L127.96 287.96V154.16Z" fill="#d97706"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#0B0712"/>
+  <g transform="translate(4 4)">
+    <path d="M12 1.6 L3.6 9.6 L12 9.6 Z" fill="#9D5CFF"/>
+    <path d="M12 1.6 L20.4 9.6 L12 9.6 Z" fill="#16E0C3"/>
+    <path d="M3.6 9.6 L12 9.6 L12 22.4 Z" fill="#7A45CC"/>
+    <path d="M20.4 9.6 L12 9.6 L12 22.4 Z" fill="#9D5CFF"/>
+  </g>
 </svg>

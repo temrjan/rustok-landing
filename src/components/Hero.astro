@@ -1,0 +1,114 @@
+---
+const GITHUB = 'https://github.com/rustok-org'
+---
+
+<section class="hero">
+  <div class="eyebrow" data-heroline style="animation-delay:40ms">
+    <span class="led"></span>self-custody · MCP over stdio
+  </div>
+
+  <h1 class="title" data-heroline style="animation-delay:120ms">
+    Give your agent<br />a wallet of <span class="accent">its own.</span>
+  </h1>
+
+  <p class="lede" data-heroline style="animation-delay:200ms">
+    Self-custody Ethereum agent wallet. One local Docker image, MCP over stdio —
+    your private keys never leave your machine.
+  </p>
+
+  <!-- live agent session (signature) -->
+  <div class="term" data-heroline style="animation-delay:300ms">
+    <div class="term-bar">
+      <span class="d" style="background:var(--amethyst)"></span>
+      <span class="d" style="background:var(--teal)"></span>
+      <span class="d" style="background:var(--dim-2)"></span>
+      <span class="fname">agent-session.log</span>
+      <span class="live"><span class="live-dot"></span>live</span>
+    </div>
+    <div class="term-body" role="img" aria-label="An agent reads wallet context, previews a send that txguard marks ok, the user approves with y, and Rustok signs and broadcasts locally.">
+      <div><span class="t-ag">agent</span><span class="t-sep"> ▸ </span>rustok.<span class="t-cmd">get_wallet_context</span>()</div>
+      <div class="indent"><span class="t-key">address</span><span class="t-val">0xA71…FfEE</span></div>
+      <div class="indent"><span class="t-key">chains</span><span class="t-val">ethereum · arbitrum · base · optimism</span></div>
+      <div class="gap"></div>
+      <div><span class="t-ag">agent</span><span class="t-sep"> ▸ </span>rustok.<span class="t-cmd">preview_send</span>(&#123; to, amount, chain_id &#125;)</div>
+      <div class="indent"><span class="t-key t-warn">txguard</span><span class="t-ok">ok</span><span class="t-note">&nbsp;&nbsp;&nbsp;&nbsp;risk level shown · gas estimated</span></div>
+      <div><span class="t-ru">rustok</span><span class="t-sep"> ▸ </span><span class="t-val">preview ready — awaiting your approval</span></div>
+      <div class="approve">
+        <span class="approve-chip"><span class="t-note">&gt;&nbsp;</span><span class="y">y</span><span class="caret"></span></span>
+      </div>
+      <div><span class="t-ru">rustok</span><span class="t-sep"> ▸ </span>execute_send <span class="t-sep">→</span> tx_hash <span class="t-ok">✓</span><span class="t-note">&nbsp;&nbsp;&nbsp;(signed locally)</span></div>
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn-primary" href="#install">Install Rustok</a>
+    <a class="btn-ghost" href={GITHUB} target="_blank" rel="noopener">GitHub</a>
+  </div>
+</section>
+
+<style>
+  .hero { padding: clamp(40px, 6vw, 84px) clamp(20px, 4vw, 56px) clamp(36px, 4vw, 52px); }
+
+  [data-heroline] { animation: h-line 0.55s cubic-bezier(.2, .7, .2, 1) both; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted-2); border: 1px solid var(--border-soft);
+    border-radius: 999px; padding: 6px 13px;
+  }
+  .led { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px var(--teal); }
+
+  .title {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(34px, 6.2vw, 74px); line-height: 1.0; letter-spacing: -0.025em;
+    margin: 22px 0 0; color: var(--text); text-wrap: balance;
+  }
+  .accent { color: var(--teal); }
+
+  .lede {
+    max-width: 640px; margin: 22px 0 0;
+    font-size: clamp(13px, 1.5vw, 15.5px); line-height: 1.65; color: var(--text-2);
+  }
+
+  /* terminal */
+  .term { margin-top: 34px; background: var(--bg-2); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; }
+  .term-bar { display: flex; align-items: center; gap: 8px; padding: 11px 16px; border-bottom: 1px solid var(--hairline-2); background: var(--bg-3); }
+  .d { width: 8px; height: 8px; border-radius: 50%; }
+  .fname { margin-left: 8px; font-size: 11.5px; color: var(--muted-4); }
+  .live { margin-left: auto; font-size: 11px; color: var(--teal); display: flex; align-items: center; gap: 6px; }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: blink 1.4s steps(1) infinite; }
+
+  .term-body {
+    padding: clamp(16px, 3vw, 26px);
+    font-size: clamp(12.5px, 1.5vw, 14.5px); line-height: 1.75;
+    overflow-x: auto; white-space: nowrap;
+  }
+  .indent { padding-left: 26px; }
+  .gap { height: 14px; }
+
+  .approve { padding-left: 26px; margin: 8px 0; }
+  .approve-chip {
+    display: inline-flex; align-items: center; gap: 2px;
+    padding: 4px 12px; border-radius: 7px;
+    background: rgba(22, 224, 195, 0.07); border: 1px solid rgba(22, 224, 195, 0.5);
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+  .y { color: var(--teal); font-weight: 700; }
+  .caret { width: 8px; height: 1.05em; background: var(--teal); margin-left: 4px; display: inline-block; vertical-align: -2px; animation: blink 1.05s steps(1) infinite; }
+
+  /* buttons */
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .btn-primary {
+    color: var(--bg); background: var(--amethyst); font-weight: 600; font-size: 14px;
+    padding: 12px 22px; border-radius: 8px; box-shadow: 0 10px 30px -10px rgba(157, 92, 255, 0.9);
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--amethyst-hi); }
+  .btn-ghost {
+    color: var(--text); background: transparent; border: 1px solid var(--border);
+    font-weight: 500; font-size: 14px; padding: 12px 22px; border-radius: 8px;
+    transition: border-color 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--amethyst); }
+</style>

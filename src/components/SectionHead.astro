@@ -1,0 +1,29 @@
+---
+interface Props {
+  cmd: string
+  title: string
+  lede?: string
+}
+const { cmd, title, lede } = Astro.props
+---
+
+<div class="crumb">
+  <span class="ru">rustok</span><span class="sep">▸</span><span class="cmd">{cmd}</span>
+</div>
+<h2 class="head" class:list={{ withlede: !!lede }}>{title}</h2>
+{lede && <p class="lede"><slot>{lede}</slot></p>}
+
+<style>
+  .crumb { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 14px; }
+  .ru { color: var(--teal); font-weight: 600; }
+  .sep { color: var(--dim); }
+  .cmd { color: var(--muted-2); }
+
+  .head {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.02em;
+    margin: 0 0 20px; color: var(--text); text-wrap: balance;
+  }
+  .head.withlede { margin: 0 0 10px; }
+  .lede { max-width: 620px; margin: 0 0 26px; font-size: 14px; line-height: 1.6; color: var(--text-2); }
+</style>

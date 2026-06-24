@@ -1,0 +1,50 @@
+---
+import SectionHead from './SectionHead.astro'
+
+const chains = [
+  { name: 'Ethereum', id: '1' },
+  { name: 'Arbitrum', id: '42161' },
+  { name: 'Base', id: '8453' },
+  { name: 'Optimism', id: '10' },
+  { name: 'Sepolia', id: '11155111', testnet: true },
+]
+---
+
+<section class="section" data-reveal>
+  <SectionHead
+    cmd="chains"
+    title="Mainnet, first-class L2s, and your own RPC."
+    lede="Ethereum mainnet, plus first-class L2s — Arbitrum One, Base, and Optimism. Sepolia testnet for development. Any other EVM chain works with your own RPC URL."
+  />
+
+  <div class="panel">
+    <div class="env">
+      <span class="env-key">RUSTOK_ALLOWED_CHAINS</span> &nbsp;·&nbsp; default ships <span class="env-val">1,8453</span>
+    </div>
+    <div class="chips">
+      {chains.map((c) => (
+        <span class:list={['chip', { testnet: c.testnet }]}>
+          <span class="c-name">{c.name}</span><span class="c-id">{c.id}</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .panel { background: var(--bg-2); border: 1px solid var(--border-soft); border-radius: 12px; padding: 20px 22px; }
+  .env { font-size: 12px; color: var(--muted-4); margin-bottom: 14px; }
+  .env-key { color: var(--muted); }
+  .env-val { color: var(--teal); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    display: inline-flex; align-items: baseline; gap: 8px; font-size: 13px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 8px 13px;
+  }
+  .c-name { color: var(--text); }
+  .c-id { color: var(--teal); }
+  .chip.testnet { border-color: var(--border-soft); opacity: 0.8; }
+  .chip.testnet .c-name { color: var(--text-2); }
+  .chip.testnet .c-id { color: var(--muted-2); }
+</style>

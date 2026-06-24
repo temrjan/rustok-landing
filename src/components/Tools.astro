@@ -1,0 +1,58 @@
+---
+import SectionHead from './SectionHead.astro'
+
+const tools: { name: string; cap: 'read_wallet' | 'preview_tx' | 'execute_tx'; what: string }[] = [
+  { name: 'get_wallet_context', cap: 'read_wallet', what: 'active address, per-chain balances, allowed chains' },
+  { name: 'get_balances',       cap: 'read_wallet', what: 'token balances for the active wallet' },
+  { name: 'get_positions',      cap: 'read_wallet', what: 'DeFi positions — Aave v3 + ERC-4626 vaults' },
+  { name: 'preview_send',       cap: 'preview_tx',  what: 'preview an ETH send → preview_id, gas, risk level' },
+  { name: 'execute_send',       cap: 'execute_tx',  what: 'broadcast a previewed send → tx_hash' },
+  { name: 'sign_message',       cap: 'execute_tx',  what: 'sign a message (EIP-191)' },
+]
+---
+
+<section class="section" data-reveal>
+  <SectionHead
+    cmd="tools --list"
+    title="Six tools. Nothing hidden."
+    lede="Capability gating is fail-closed — scope a session to read only, prepare only, or execute."
+  />
+
+  <div class="wrap">
+    <div class="table" role="table" aria-label="Rustok MCP tools and their capabilities">
+      <div class="row head" role="row">
+        <div role="columnheader">tool</div><div role="columnheader">capability</div><div role="columnheader">what it does</div>
+      </div>
+      {tools.map((t) => (
+        <div class="row" data-tool role="row">
+          <div class="name" role="cell">{t.name}</div>
+          <div role="cell"><span class:list={['cap', t.cap]}>{t.cap}</span></div>
+          <div class="what" role="cell">{t.what}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wrap { overflow-x: auto; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--bg-2); }
+  .table { min-width: 600px; }
+  .row {
+    display: grid; grid-template-columns: 1.1fr 0.9fr 2fr; gap: 16px; align-items: center;
+    padding: 15px 20px; border-bottom: 1px solid var(--rule); font-size: 13.5px;
+    transition: background 0.15s;
+  }
+  .row:last-child { border-bottom: none; }
+  .row.head {
+    padding: 13px 20px; border-bottom: 1px solid var(--hairline-2);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-4);
+  }
+  .row[data-tool]:hover { background: rgba(157, 92, 255, 0.05); }
+  .name { color: var(--text); }
+  .what { color: var(--muted); }
+
+  .cap { font-size: 11.5px; border-radius: 6px; padding: 3px 9px; border: 1px solid; }
+  .cap.read_wallet { color: var(--teal); background: rgba(22, 224, 195, 0.1); border-color: rgba(22, 224, 195, 0.28); }
+  .cap.preview_tx  { color: var(--amethyst-soft); background: rgba(157, 92, 255, 0.12); border-color: rgba(157, 92, 255, 0.3); }
+  .cap.execute_tx  { color: var(--amber); background: rgba(255, 180, 84, 0.1); border-color: rgba(255, 180, 84, 0.28); }
+</style>

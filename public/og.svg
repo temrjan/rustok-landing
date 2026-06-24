@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="-10%" r="100%">
+      <stop offset="0%" stop-color="#110A22"/>
+      <stop offset="60%" stop-color="#08050F"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#2A1C4D" stroke-opacity="0.6"/>
+
+  <!-- crystal -->
+  <g transform="translate(96 120) scale(4.2)">
+    <path d="M12 1.6 L3.6 9.6 L12 9.6 Z" fill="#9D5CFF"/>
+    <path d="M12 1.6 L20.4 9.6 L12 9.6 Z" fill="#16E0C3"/>
+    <path d="M3.6 9.6 L12 9.6 L12 22.4 Z" fill="#7A45CC"/>
+    <path d="M20.4 9.6 L12 9.6 L12 22.4 Z" fill="#9D5CFF"/>
+  </g>
+
+  <text x="100" y="245" font-family="'JetBrains Mono', monospace" font-size="22" letter-spacing="3" fill="#7E6BB0">RUSTOK · SELF-CUSTODY · MCP OVER STDIO</text>
+
+  <text x="96" y="350" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="82" letter-spacing="-2" fill="#EDE7FF">Give your agent</text>
+  <text x="96" y="440" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="82" letter-spacing="-2" fill="#EDE7FF">a wallet of <tspan fill="#16E0C3">its own.</tspan></text>
+
+  <text x="100" y="540" font-family="'JetBrains Mono', monospace" font-size="24" fill="#B9A8E0">Self-custody Ethereum agent wallet · one Docker image · keys never leave your machine</text>
+  <text x="1104" y="588" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="22" fill="#5E4F86">rustokwallet.com</text>
+</svg>
